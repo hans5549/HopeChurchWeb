@@ -7,8 +7,8 @@ public partial class LoginPage : ComponentBase
 {
     private FormLogin _login = new();
 
-    private void HandleValidSubmit()
+    private void HandleSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        Console.WriteLine(_login.Account);
     }
 }

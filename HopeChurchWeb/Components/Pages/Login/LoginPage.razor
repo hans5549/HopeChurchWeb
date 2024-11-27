@@ -1,17 +1,15 @@
 @page "/login"
 
-<EditForm Model="@_login" OnValidSubmit="HandleValidSubmit">
-    <MudGrid>
-        <MudItem Style="width: 600px">
-            <MudCard>
-                <MudCardContent>
-                    <MudTextField Label="帳號" @bind-Value="_login.Account" For="() => _login.Account"/>
-                    <MudTextField Label="密碼" @bind-Value="_login.Password" For="() => _login.Password"/>
-                </MudCardContent>
-                <MudCardActions>
-                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">登入</MudButton>
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
-    </MudGrid>
-</EditForm>
+<MudDialog Style="width: 500px; height: 350px">
+    <TitleContent>
+        <MudText Typo="Typo.h5" Class="d-flex justify-center">登入</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudTextField Class="pa-2" @bind-Value="_login.Account" Label="帳號" HelperText="姓名 或 Email" Variant="Variant.Outlined" />
+        <MudTextField Class="pa-2" @bind-Value="_login.Password" Label="密碼" Variant="Variant.Outlined"/>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="HandleSubmit">註冊</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="HandleSubmit">登入</MudButton>
+    </DialogActions>
+</MudDialog>
