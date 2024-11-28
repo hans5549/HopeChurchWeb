@@ -15,6 +15,13 @@ public partial class MainLayout
     #endregion
 
     private bool _drawerOpen = false;
+    private bool _menuShow = false;
+
+    protected async Task InitializeAsync()
+    {
+        _drawerOpen = false;
+        _menuShow = false;
+    }
 
     private Task HandleLoginAsync()
     {

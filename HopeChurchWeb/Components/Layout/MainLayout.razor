@@ -11,14 +11,17 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="1" Style="background-color: #42A5F5">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+    <MudAppBar Elevation="1" Style="background-color:#F3C937">
+        @if (_menuShow)
+        {
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
+        }
         <MudText Typo="Typo.h5" Class="ml-3">MyWebSite</MudText>
-        <MudSpacer />
-        <MudButton StartIcon="@Icons.Material.Filled.Login" Style="color: #fefefe" Size="Size.Large" @onclick="HandleLoginAsync">登入</MudButton>
+        <MudSpacer/>
+        <MudButton StartIcon="@Icons.Material.Filled.Login" Style="color: #fefefe" Size="Size.Large" Href="/login">登入</MudButton>
     </MudAppBar>
 
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Style="background-color: #F5F5F5" Elevation="2" Variant="@DrawerVariant.Responsive">
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Style="background-color: #F5F5F5" Elevation="2" Variant="@DrawerVariant.Temporary">
         <MenuItems />
     </MudDrawer>
 
