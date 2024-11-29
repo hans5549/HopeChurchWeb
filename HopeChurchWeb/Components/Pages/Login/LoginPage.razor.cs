@@ -7,9 +7,16 @@ namespace HopeChurchWeb.Components.Pages.Login;
 
 public partial class LoginPage : ComponentBase
 {
+    #region [Inject]
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = null!;
+
+    #endregion
+
     private bool _showPassword = false;
     private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-    private FormLogin _login = new();
+    private FormLogin _formLogin = new();
     private InputType _passwordInputType = InputType.Password;
     private string _selectedMode = LoginModeEnum.Church.ToString();
 
@@ -29,8 +36,18 @@ public partial class LoginPage : ComponentBase
         }
     }
 
-    private void HandleSubmit()
+    private void HandleForgetPasswordClick()
     {
-        Console.WriteLine(_login.Account);
+        NavigationManager.NavigateTo("/forget-password");
+    }
+
+    private void HandleSignupClick()
+    {
+        NavigationManager.NavigateTo("/signup");
+    }
+
+    private void HandleSubmitClick()
+    {
+        Console.WriteLine(_formLogin.Account);
     }
 }

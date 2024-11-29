@@ -2,13 +2,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HopeChurchWeb.Models.LoginSignup;
 
-public class FormLogin
+public class FormSignup
 {
     /// <summary>
     /// 帳號
     /// </summary>
-    [Required(ErrorMessage = "請輸入姓名或 Email")]
+    [Required]
     public string Account { get; set; } = string.Empty;
+
+    /// <summary>
+    /// E-mail
+    /// </summary>
+    [Required(ErrorMessage = "請輸入電子郵件")]
+    [EmailAddress(ErrorMessage = "請輸入正確的電子郵件格式")]
+    public string Email { get; set; } = string.Empty;
 
     /// <summary>
     /// 密碼

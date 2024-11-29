@@ -1,7 +1,7 @@
 @page "/login"
 @using HopeChurchWeb.Common.Enum
 
-<EditForm Model="@_login">
+<EditForm Model="@_formLogin">
     <MudContainer MaxWidth="MaxWidth.Medium" Class="mt-16">
         <MudCard Elevation="2">
             <MudCardContent>
@@ -25,14 +25,14 @@
 
                             <!-- Login Form -->
                             <MudTextField T="string"
-                                          @bind-Value="_login.Account"
+                                          @bind-Value="_formLogin.Account"
                                           Label="帳號"
                                           HelperText="姓名 或 Email"
                                           Variant="Variant.Outlined"
                                           FullWidth="true" />
 
                             <MudTextField T="string"
-                                          @bind-Value="_login.Password"
+                                          @bind-Value="_formLogin.Password"
                                           InputType="@_passwordInputType"
                                           Label="密碼"
                                           Variant="Variant.Outlined"
@@ -44,7 +44,8 @@
                             <!-- Forgot Email Link -->
                             <MudButton Variant="Variant.Text"
                                        Style="color: #604847"
-                                       Class="ml-1">
+                                       Class="ml-1"
+                                       OnClick="HandleForgetPasswordClick">
                                 忘記密碼？
                             </MudButton>
 
@@ -55,14 +56,16 @@
                                 @if (_selectedMode == LoginModeEnum.CGM.ToString())
                                 {
                                     <MudButton Variant="Variant.Outlined"
-                                               Style="color: #604847; width: 50%; visibility: hidden">
+                                               Style="color: #604847; width: 50%; visibility: hidden"
+                                               OnClick="HandleSignupClick">
                                         註冊
                                     </MudButton>
                                 }
                                 else
                                 {
                                     <MudButton Variant="Variant.Outlined"
-                                               Style="color: #604847; width: 50%">
+                                               Style="color: #604847; width: 50%"
+                                               OnClick="HandleSignupClick">
                                         註冊
                                     </MudButton>
                                 }
