@@ -1,4 +1,5 @@
 using HopeChurchWeb.Components;
+using HopeChurchWeb.Extensions;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddAllServices().AddAllRepositories();
 
 var app = builder.Build();
 

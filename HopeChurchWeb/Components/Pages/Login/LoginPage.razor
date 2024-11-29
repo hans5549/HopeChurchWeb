@@ -17,7 +17,8 @@
                             <!-- Title -->
                             <MudItem xs="12" sm="12" Class="d-flex align-center">
                                 <MudText Typo="Typo.h5" Style="font-weight: 500; margin-right: 16px;">帳號</MudText>
-                                <MudChipSet @bind-SelectedValue="@_selectedMode" SelectionMode="SelectionMode.SingleSelection" CheckMark>
+                                <MudChipSet @bind-SelectedValue="@_selectedMode"
+                                            SelectionMode="SelectionMode.SingleSelection" CheckMark>
                                     <MudChip Text="@LoginModeEnum.Church.ToString()" Variant="Variant.Outlined">教會</MudChip>
                                     <MudChip Text="@LoginModeEnum.CGM.ToString()" Variant="Variant.Outlined">CGM</MudChip>
                                 </MudChipSet>
@@ -81,24 +82,4 @@
             </MudCardContent>
         </MudCard>
     </MudContainer>
-
-    @* <MudGrid Class="d-flex justify-center align-center" Style="height: 100vh;"> *@
-    @*     <MudItem> *@
-    @*         <MudCard Style="background-color: #F5F5F5"> *@
-    @*             <MudCardHeader Class="d-flex justify-content-between"> *@
-    @*                 <CardHeaderContent> *@
-    @*                     <MudText Class="d-flex justify-content-center mt-4" Typo="Typo.h5">登入</MudText> *@
-    @*                 </CardHeaderContent> *@
-    @*             </MudCardHeader> *@
-    @*             <MudCardContent> *@
-    @*                 <MudTextField Class="pa-2" Style="width: 60%" @bind-Value="_login.Account" Label="帳號" Variant="Variant.Outlined" HelperText="姓名 或 Email"/> *@
-    @*                 <MudTextField Class="pa-2" Style="width: 60%" @bind-Value="_login.Password" Label="密碼" Variant="Variant.Outlined"/> *@
-    @*             </MudCardContent> *@
-    @*             <MudCardActions> *@
-    @*                 <MudButton Variant="Variant.Text" Style="width: 60%" Color="Color.Primary" OnClick="HandleSubmit">註冊</MudButton> *@
-    @*                 <MudButton Variant="Variant.Filled" Style="width: 60%" Color="Color.Primary" OnClick="HandleSubmit">登入</MudButton> *@
-    @*             </MudCardActions> *@
-    @*         </MudCard> *@
-    @*     </MudItem> *@
-    @* </MudGrid> *@
 </EditForm>

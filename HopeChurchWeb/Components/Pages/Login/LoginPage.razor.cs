@@ -1,5 +1,5 @@
 using HopeChurchWeb.Common.Enum;
-using HopeChurchWeb.Models.LoginSignup;
+using HopeChurchWeb.Models;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace HopeChurchWeb.Models.LoginSignup;
+namespace HopeChurchWeb.Models;
 
 /// <summary>
 /// 忘記密碼驗證資訊

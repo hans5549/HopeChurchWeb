@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace HopeChurchWeb.Models.LoginSignup;
+namespace HopeChurchWeb.Models;
 
 public class FormLogin
 {

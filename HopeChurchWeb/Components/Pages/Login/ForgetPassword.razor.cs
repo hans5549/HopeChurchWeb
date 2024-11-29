@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using HopeChurchWeb.Models.LoginSignup;
+using HopeChurchWeb.Models;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
