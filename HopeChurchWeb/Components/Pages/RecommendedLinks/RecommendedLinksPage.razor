@@ -1,3 +1,18 @@
 @page "/recommended-links"
+@using HopeChurchWeb.Models
 
-<h3>推薦連結</h3>
+<PageTitle>推薦連結</PageTitle>
+<MudContainer>
+    <MudText Typo="Typo.h5">推薦連結</MudText>
+    <MudDataGrid T="LinksMain" Items="@_links">
+        <Columns>
+            <PropertyColumn Title="Id" Property="link => link.Id" Hidden="true"></PropertyColumn>
+            <PropertyColumn Title="名稱" Property="link => link.Title"></PropertyColumn>
+            <PropertyColumn Title="說明" Property="link => link.Description"></PropertyColumn>
+            <PropertyColumn Title="連結" Property="link => link.Url"></PropertyColumn>
+        </Columns>
+        <PagerContent>
+            <MudDataGridPager T="LinksMain"></MudDataGridPager>
+        </PagerContent>
+    </MudDataGrid>
+</MudContainer>

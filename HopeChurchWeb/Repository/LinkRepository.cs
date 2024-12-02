@@ -4,23 +4,23 @@ using Serilog;
 
 namespace HopeChurchWeb.Repository;
 
-public class LoginRepository
+public class LinkRepository
 {
-    public LoginRepository()
+    public LinkRepository()
     {
 
     }
 
-    public List<UserMain> SelectUserMains()
+    public List<LinksMain> SelectLinks()
     {
         try
         {
             FakeData fakeData = new();
-            return fakeData.GetUserList();
+            return fakeData.GetLinksList();
         }
         catch (Exception e)
         {
-            Log.Error(e, "Repository: LoginRepository, Function: SelectUserMains");
+            Log.Error(e, "Repository: LinkRepository, Function: SelectLinks");
             return [];
         }
     }

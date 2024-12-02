@@ -15,7 +15,7 @@ public partial class MainLayout
     #endregion
 
     private bool _drawerOpen = false;
-    private bool _menuShow = false;
+    private bool _menuShow = true;
 
     protected async Task InitializeAsync()
     {

@@ -4,7 +4,7 @@ namespace HopeChurchWeb.Data;
 
 public class FakeData
 {
-    public List<UserMain> GetFormLogin()
+    public List<UserMain> GetUserList()
     {
         return
         [
@@ -198,6 +198,46 @@ public class FakeData
             {
                 Account = "康佳蓉", Email = "jiarong.kang@example.com", Password = "hashed_password_050", IsActive = false
             }
+        ];
+    }
+
+    public List<LinksMain> GetLinksList()
+    {
+        return
+        [
+            new LinksMain { Id = 1, Title = "Google搜尋", Description = "全球最大的搜尋引擎", Url = "https://www.google.com" },
+            new LinksMain { Id = 2, Title = "YouTube", Description = "影音分享平台", Url = "https://www.youtube.com" },
+            new LinksMain { Id = 3, Title = "Facebook", Description = "社群媒體平台", Url = "https://www.facebook.com" },
+            new LinksMain { Id = 4, Title = "LinkedIn", Description = "專業人士社交網路", Url = "https://www.linkedin.com" },
+            new LinksMain { Id = 5, Title = "GitHub", Description = "程式碼託管平台", Url = "https://github.com" },
+            new LinksMain
+                { Id = 6, Title = "Stack Overflow", Description = "程式開發問答網站", Url = "https://stackoverflow.com" },
+            new LinksMain { Id = 7, Title = "Microsoft", Description = "微軟官方網站", Url = "https://www.microsoft.com" },
+            new LinksMain { Id = 8, Title = "Apple", Description = "蘋果公司官方網站", Url = "https://www.apple.com" },
+            new LinksMain { Id = 9, Title = "Amazon", Description = "全球最大電商平台", Url = "https://www.amazon.com" },
+            new LinksMain { Id = 10, Title = "Netflix", Description = "串流影音服務", Url = "https://www.netflix.com" },
+            new LinksMain { Id = 11, Title = "Twitter", Description = "即時社交媒體平台", Url = "https://twitter.com" },
+            new LinksMain { Id = 12, Title = "Instagram", Description = "圖片分享社群平台", Url = "https://www.instagram.com" },
+            new LinksMain { Id = 13, Title = "Reddit", Description = "社群討論平台", Url = "https://www.reddit.com" },
+            new LinksMain { Id = 14, Title = "Wikipedia", Description = "線上百科全書", Url = "https://www.wikipedia.org" },
+            new LinksMain { Id = 15, Title = "Medium", Description = "部落格發布平台", Url = "https://medium.com" },
+            new LinksMain { Id = 16, Title = "Spotify", Description = "音樂串流服務", Url = "https://www.spotify.com" },
+            new LinksMain { Id = 17, Title = "Docker Hub", Description = "容器映像檔庫", Url = "https://hub.docker.com" },
+            new LinksMain { Id = 18, Title = "Azure", Description = "微軟雲端服務", Url = "https://azure.microsoft.com" },
+            new LinksMain { Id = 19, Title = "AWS", Description = "亞馬遜雲端服務", Url = "https://aws.amazon.com" },
+            new LinksMain
+                { Id = 20, Title = "Google Cloud", Description = "Google雲端服務", Url = "https://cloud.google.com" },
+            new LinksMain { Id = 21, Title = "NPM", Description = "Node.js套件管理器", Url = "https://www.npmjs.com" },
+            new LinksMain { Id = 22, Title = "NuGet", Description = ".NET套件管理平台", Url = "https://www.nuget.org" },
+            new LinksMain { Id = 23, Title = "PyPI", Description = "Python套件索引", Url = "https://pypi.org" },
+            new LinksMain { Id = 24, Title = "CodePen", Description = "線上程式碼編輯器", Url = "https://codepen.io" },
+            new LinksMain { Id = 25, Title = "JSFiddle", Description = "線上前端開發環境", Url = "https://jsfiddle.net" },
+            new LinksMain { Id = 26, Title = "LeetCode", Description = "程式競賽平台", Url = "https://leetcode.com" },
+            new LinksMain { Id = 27, Title = "W3Schools", Description = "網頁開發學習資源", Url = "https://www.w3schools.com" },
+            new LinksMain
+                { Id = 28, Title = "MDN", Description = "Mozilla開發者文件", Url = "https://developer.mozilla.org" },
+            new LinksMain { Id = 29, Title = "Bootstrap", Description = "前端框架官網", Url = "https://getbootstrap.com" },
+            new LinksMain { Id = 30, Title = "jQuery", Description = "JavaScript函式庫", Url = "https://jquery.com" }
         ];
     }
 }
