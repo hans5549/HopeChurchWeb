@@ -1,11 +1,19 @@
 using HopeChurchWeb.Components;
 using HopeChurchWeb.Extensions;
 using MudBlazor.Services;
+using Serilog;
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add MudBlazor services
 builder.Services.AddMudServices();
+
+// Add Serilog services
+builder.Logging.AddSerilog();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

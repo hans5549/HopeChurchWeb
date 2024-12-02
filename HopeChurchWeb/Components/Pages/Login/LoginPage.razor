@@ -17,10 +17,13 @@
                             <!-- Title -->
                             <MudItem xs="12" sm="12" Class="d-flex align-center">
                                 <MudText Typo="Typo.h5" Style="font-weight: 500; margin-right: 16px;">帳號</MudText>
-                                <MudChipSet @bind-SelectedValue="@_selectedMode"
-                                            SelectionMode="SelectionMode.SingleSelection" CheckMark>
-                                    <MudChip Text="@LoginModeEnum.Church.ToString()" Variant="Variant.Outlined">教會</MudChip>
-                                    <MudChip Text="@LoginModeEnum.CGM.ToString()" Variant="Variant.Outlined">CGM</MudChip>
+                                <MudChipSet @bind-SelectedValue="_formLogin.LoginMode"
+                                            SelectionMode="SelectionMode.SingleSelection"
+                                            CheckMark>
+                                    <MudChip Value="@LoginModeEnum.Church.ToString().ToLower()"
+                                             Variant="Variant.Outlined">教會</MudChip>
+                                    <MudChip Value="@LoginModeEnum.CGM.ToString().ToLower()"
+                                             Variant="Variant.Outlined">CGM</MudChip>
                                 </MudChipSet>
                             </MudItem>
 
@@ -54,7 +57,7 @@
                             <MudStack Row="true"
                                       Justify="Justify.SpaceBetween"
                                       Style="width: 100%">
-                                @if (_selectedMode == LoginModeEnum.CGM.ToString())
+                                @if (_formLogin.LoginMode == LoginModeEnum.CGM.ToString().ToLower())
                                 {
                                     <MudButton Variant="Variant.Outlined"
                                                Style="color: #604847; width: 50%; visibility: hidden"
@@ -72,7 +75,8 @@
                                 }
 
                                 <MudButton Variant="Variant.Filled"
-                                           Style="color: white; background-color: #604847; width: 50%">
+                                           Style="color: white; background-color: #604847; width: 50%"
+                                           OnClick="HandleSubmitClick">
                                     登入
                                 </MudButton>
                             </MudStack>

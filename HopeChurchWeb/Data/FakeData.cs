@@ -10,6 +10,10 @@ public class FakeData
         [
             new UserMain
             {
+                Account = "黃芃銘", Email = "xiaoming.zhang@example.com", Password = "AAA", IsActive = true
+            },
+            new UserMain
+            {
                 Account = "張小明", Email = "xiaoming.zhang@example.com", Password = "hashed_password_001", IsActive = true
             },
             new UserMain
