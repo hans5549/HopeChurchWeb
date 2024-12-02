@@ -4,15 +4,30 @@
 <PageTitle>推薦連結</PageTitle>
 <MudContainer>
     <MudText Typo="Typo.h5">推薦連結</MudText>
-    <MudDataGrid T="LinksMain" Items="@_links">
-        <Columns>
-            <PropertyColumn Title="Id" Property="link => link.Id" Hidden="true"></PropertyColumn>
-            <PropertyColumn Title="名稱" Property="link => link.Title"></PropertyColumn>
-            <PropertyColumn Title="說明" Property="link => link.Description"></PropertyColumn>
-            <PropertyColumn Title="連結" Property="link => link.Url"></PropertyColumn>
-        </Columns>
-        <PagerContent>
-            <MudDataGridPager T="LinksMain"></MudDataGridPager>
-        </PagerContent>
-    </MudDataGrid>
+    <MudGrid>
+        @foreach(var link in _links)
+        {
+            <MudItem xs="12" sm="6" md="4">
+                <MudCard Elevation="2" Class="mt-4 h-100">
+                    <MudCardContent>
+                        <MudStack>
+                            <MudText Typo="Typo.h6" Style="font-weight: 500;" Class="text-center">@link.Title</MudText>
+
+                            <MudStack Spacing="2">
+                                <div>
+                                    <MudText Typo="Typo.subtitle1" Style="font-weight: 500;">說明</MudText>
+                                    <MudText Typo="Typo.body2">@link.Description</MudText>
+                                </div>
+
+                                <div>
+                                    <MudText Typo="Typo.subtitle1" Style="font-weight: 500;">連結</MudText>
+                                    <MudLink Href="@link.Url" Target="_blank" Class="text-break">@link.Url</MudLink>
+                                </div>
+                            </MudStack>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
 </MudContainer>
