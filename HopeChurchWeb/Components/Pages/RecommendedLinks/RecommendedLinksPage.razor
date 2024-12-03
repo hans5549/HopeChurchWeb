@@ -3,31 +3,99 @@
 
 <PageTitle>推薦連結</PageTitle>
 <MudContainer>
-    <MudText Typo="Typo.h5">推薦連結</MudText>
-    <MudGrid>
-        @foreach(var link in _links)
+    <div class="mt-6 mb-1">
+        <div class="d-flex justify-space-between align-center px-3">
+            <div style="flex: 1;" class="d-flex align-center">
+                <MudText Typo="Typo.h5" Style="margin-bottom: 0">推薦連結</MudText>
+                <MudTooltip Text="新增推薦連結">
+                    <MudIconButton
+                        Icon="@Icons.Material.Filled.Add"
+                        Color="Color.Secondary"
+                        Variant="Variant.Filled"
+                        Size="Size.Medium"
+                        Style="background-color: #6366F1; margin-left: 8px;"
+                        OnClick="HandleOpenAddLinkDialog"
+                    />
+                </MudTooltip>
+            </div>
+            <div style="flex: 1;" class="d-flex justify-end">
+                <MudTextField
+                    @bind-Value="_searchText"
+                    T="string"
+                    Placeholder="搜尋標題"
+                    Adornment="Adornment.Start"
+                    AdornmentIcon="@Icons.Material.Filled.Search"
+                    Class="pb-4"
+                    Style="max-width: 250px;"
+                    Immediate="true"
+                    DebounceInterval="300"
+                />
+            </div>
+        </div>
+    </div>
+    <MudDivider Class="mb-8" Style="border-width: 2px; border-color: rgba(0,0,0,0.35);" />
+
+    <div class="links-container">
+        @foreach(var link in _filteredLinks)
         {
-            <MudItem xs="12" sm="6" md="4">
-                <MudCard Elevation="2" Class="mt-4 h-100">
-                    <MudCardContent>
-                        <MudStack>
-                            <MudText Typo="Typo.h6" Style="font-weight: 500;" Class="text-center">@link.Title</MudText>
+            <div class="card-wrapper">
+                <MudCard Elevation="2">
+                    <MudCardHeader Style="padding: 4px 8px;">
+                        <CardHeaderContent>
+                            <MudLink Href="@link.Url"
+                                     Target="_blank"
+                                     Typo="Typo.h6"
+                                     Style="font-weight: 500; color: #4F46E5;">@link.Title</MudLink>
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+                            <MudMenu Icon="@Icons.Material.Filled.Settings"
+                                     Color="Color.Default"
+                                     AnchorOrigin="Origin.BottomRight"
+                                     TransformOrigin="Origin.TopRight">
+                                <MudMenuItem>
+                                    <div class="d-flex align-center">
+                                        <MudIcon Icon="@Icons.Material.Filled.Edit" Class="mr-2" />
+                                        編輯
+                                    </div>
+                                </MudMenuItem>
+                                <MudMenuItem>
+                                    <div class="d-flex align-center">
+                                        <MudIcon Icon="@Icons.Material.Filled.Delete" Class="mr-2" Color="Color.Error" />
+                                        刪除
+                                    </div>
+                                </MudMenuItem>
+                            </MudMenu>
+                        </CardHeaderActions>
+                    </MudCardHeader>
 
-                            <MudStack Spacing="2">
-                                <div>
+                    <MudCardContent Style="padding: 8px 16px;">
+                        <MudStack Spacing="1">
+                            <div>
+                                <div @onclick="@(() => HandleToggleExpandClick(link.Id))"
+                                     class="d-flex align-center justify-space-between"
+                                     style="cursor: pointer;">
                                     <MudText Typo="Typo.subtitle1" Style="font-weight: 500;">說明</MudText>
+                                    <MudIcon Icon="@(GetExpandState(link.Id) ? Icons.Material.Filled.ExpandLess : Icons.Material.Filled.ExpandMore)" />
+                                </div>
+                                <MudCollapse Expanded="@GetExpandState(link.Id)">
                                     <MudText Typo="Typo.body2">@link.Description</MudText>
-                                </div>
-
-                                <div>
-                                    <MudText Typo="Typo.subtitle1" Style="font-weight: 500;">連結</MudText>
-                                    <MudLink Href="@link.Url" Target="_blank" Class="text-break">@link.Url</MudLink>
-                                </div>
-                            </MudStack>
+                                </MudCollapse>
+                            </div>
                         </MudStack>
                     </MudCardContent>
+
+                    <MudCardActions Style="padding: 8px 16px;">
+                        <MudIconButton Icon="@Icons.Material.Filled.Favorite"
+                                      Size="Size.Small"
+                                      Color="@(IsFavorite(link.Id) ? Color.Error : Color.Default)"
+                                      OnClick="@(() => HandleToggleFavoriteClick(link.Id))" />
+                        <MudIconButton Icon="@Icons.Material.Filled.Link"
+                                      Size="Size.Small"
+                                      Color="Color.Default"
+                                      OnClick="@(() => HandleCopyToClipboardClick(link.Url))" />
+                    </MudCardActions>
                 </MudCard>
-            </MudItem>
+            </div>
         }
-    </MudGrid>
+    </div>
 </MudContainer>

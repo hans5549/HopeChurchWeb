@@ -11,13 +11,13 @@ public partial class LoginPage : ComponentBase
     #region [Inject]
 
     [Inject]
-    private ISnackbar Snackbar { get; set; } = null!;
+    private ISnackbar _snackbar { get; set; } = null!;
 
     [Inject]
-    private LoginService LoginService { get; set; } = null!;
+    private LoginService _loginService { get; set; } = null!;
 
     [Inject]
-    private NavigationManager NavigationManager { get; set; } = null!;
+    private NavigationManager _navigationManager { get; set; } = null!;
 
     #endregion
 
@@ -45,17 +45,17 @@ public partial class LoginPage : ComponentBase
 
     private void HandleForgetPasswordClick()
     {
-        NavigationManager.NavigateTo("/forget-password");
+        _navigationManager.NavigateTo("/forget-password");
     }
 
     private void HandleSignupClick()
     {
-        NavigationManager.NavigateTo("/signup");
+        _navigationManager.NavigateTo("/signup");
     }
 
     private void HandleSubmitClick()
     {
-        ServiceResponse response = LoginService.CheckUserExist(_formLogin);
+        ServiceResponse response = _loginService.CheckUserExist(_formLogin);
         if (response.Success)
         {
             SnackBarProcessing($"登入成功!", Severity.Success);
@@ -68,8 +68,8 @@ public partial class LoginPage : ComponentBase
 
     private void SnackBarProcessing(string message, Severity severity)
     {
-        Snackbar.Clear();
-        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
-        Snackbar.Add(message, severity);
+        _snackbar.Clear();
+        _snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
+        _snackbar.Add(message, severity);
     }
 }

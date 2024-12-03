@@ -9,7 +9,7 @@ public partial class SignupPage : ComponentBase
     #region [Inject]
 
     [Inject]
-    private NavigationManager NavigationManager { get; set; } = null!;
+    private NavigationManager _navigationManager { get; set; } = null!;
 
     #endregion
 
@@ -36,7 +36,7 @@ public partial class SignupPage : ComponentBase
 
     private void HandleLoginClick()
     {
-        NavigationManager.NavigateTo("/login");
+        _navigationManager.NavigateTo("/login");
     }
 
     private void HandleSubmitClick()

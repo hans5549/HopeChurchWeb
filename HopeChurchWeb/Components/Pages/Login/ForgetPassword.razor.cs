@@ -10,7 +10,7 @@ public partial class ForgetPassword : ComponentBase
     #region [Inject]
 
     [Inject]
-    private IDialogService DialogService { get; set; } = null!;
+    private IDialogService _dialogService { get; set; } = null!;
 
     #endregion
 
@@ -53,7 +53,7 @@ public partial class ForgetPassword : ComponentBase
                     }
                     else
                     {
-                        await DialogService.ShowMessageBox("錯誤", message);
+                        await _dialogService.ShowMessageBox("錯誤", message);
                     }
                 }
                 break;
@@ -66,7 +66,7 @@ public partial class ForgetPassword : ComponentBase
                     }
                     else
                     {
-                        await DialogService.ShowMessageBox("錯誤", message);
+                        await _dialogService.ShowMessageBox("錯誤", message);
                     }
                 }
                 break;

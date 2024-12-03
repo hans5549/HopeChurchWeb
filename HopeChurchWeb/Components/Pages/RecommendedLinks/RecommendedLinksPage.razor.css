@@ -1,0 +1,44 @@
+.links-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 12px;
+}
+
+.card-wrapper {
+    width: calc((100% - 72px) / 4); /* 4列，3個間距共72px */
+}
+
+@media (max-width: 600px) {
+    .card-wrapper {
+        width: 100%;
+    }
+    .links-container {
+        gap: 16px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 375px) {
+    .links-container {
+        gap: 12px;
+        padding: 6px;
+    }
+
+    .card-wrapper {
+        width: calc(100% - 12px);
+    }
+
+    /* 調整卡片內部間距 */
+    :global(.mud-card-header) {
+        padding: 2px 6px !important;
+    }
+
+    :global(.mud-card-content) {
+        padding: 6px 12px !important;
+    }
+
+    :global(.mud-card-actions) {
+        padding: 6px 12px !important;
+    }
+}

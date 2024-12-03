@@ -1,0 +1,39 @@
+@page "/add-link-dialog"
+
+<PageTitle>推薦連結</PageTitle>
+<MudDialog>
+    <DialogContent>
+        <MudForm @ref="_form" Model="@_formAddLink" ValidationDelay="0">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="_formAddLink.Title"
+                                  Label="連結名稱"
+                                  Required="true"
+                                  RequiredError="請輸入連結名稱"
+                                  MaxLength="50"
+                                  Counter="50" />
+                </MudItem>
+
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="_formAddLink.Url"
+                                  Label="連結網址"
+                                  Required="true"
+                                  RequiredError="請輸入連結網址"
+                                  Validation="@(new Func<string, IEnumerable<string>>(ValidateUrl))" />
+                </MudItem>
+
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="_formAddLink.Description"
+                                  Label="說明"
+                                  Lines="3"
+                                  MaxLength="500"
+                                  Counter="500" />
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">取消</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">確認</MudButton>
+    </DialogActions>
+</MudDialog>
