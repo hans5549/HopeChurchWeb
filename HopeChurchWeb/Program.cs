@@ -1,5 +1,7 @@
 using HopeChurchWeb.Components;
+using HopeChurchWeb.Data;
 using HopeChurchWeb.Extensions;
+using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
 using Serilog;
 
@@ -20,6 +22,12 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddAllServices().AddAllRepositories();
+
+var connectionString = "Server=localhost;Database=HopeChurchDB;User=root;Password=H@ns19951204";
+
+builder.Services.AddDbContext<ChurchDBContext>(options =>
+    options.UseMySql(connectionString,
+        ServerVersion.AutoDetect(connectionString)));
 
 var app = builder.Build();
 

@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HopeChurchWeb.Models;
 
-[Table("UserMain", Schema = "user")]
 public class UserMain
 {
     /// <summary>
