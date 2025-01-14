@@ -6,11 +6,21 @@ namespace HopeChurchWeb.Data;
 public class ChurchDBContext : DbContext
 {
     public DbSet<LinksMain> LinksMains { get; set; }
+    public DbSet<FavoriteLink> FavoriteLinks { get; set; }
     public DbSet<UserMain> UserMains { get; set; }
+
+    private readonly IConfiguration _configuration;
+
+    public ChurchDBContext(
+        DbContextOptions<ChurchDBContext> options,
+        IConfiguration configuration) : base(options)
+    {
+        _configuration = configuration;
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        string connectionString = "Server=localhost;Database=HopeChurchDB;User=root;Password=H@ns19951204";
+        string connectionString = _configuration.GetConnectionString("ChurchDBConnection")!;
         optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
     }
 }

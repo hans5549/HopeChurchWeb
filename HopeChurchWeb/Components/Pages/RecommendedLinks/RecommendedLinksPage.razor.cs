@@ -37,14 +37,48 @@ public partial class RecommendedLinksPage : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         _links = _linkService.GetLinks();
+        List<FavoriteLink> favoriteLinks = _linkService.GetFavoriteLinks(1);
+        _favoriteStates = favoriteLinks.ToDictionary(x => x.LinkId, x => true);
+        HashSet<int> favoriteLinkIds = favoriteLinks.Select(x => x.LinkId).ToHashSet();
+        _links = _links.OrderByDescending(link => favoriteLinkIds.Contains(link.Id)).ToList();
     }
 
     #region [Link Event]
+
+    private void HandleLinkClickCount(LinksMain link)
+    {
+        _linkService.UpdateLinkClickCount(link.Id);
+    }
 
     private async Task HandleCopyToClipboardClick(string url)
     {
         await _jsRuntime.InvokeVoidAsync("navigator.clipboard.writeText", url);
         _snackbar.Add("已複製連結", Severity.Success);
+    }
+
+    private async Task HandleLinkEditClick(LinksMain link)
+    {
+        var dialogParameters = new DialogParameters { { "Link", link } };
+        var dialog = await _dialogService.ShowAsync<LinkDialog>("編輯推薦連結",
+            dialogParameters,
+            new DialogOptions()
+            {
+                CloseOnEscapeKey = true,
+                CloseButton = true
+            });
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false })
+        {
+            var response = (ServiceResponse)result.Data!;
+            _snackbar.Add(response.Message, response.Success ? Severity.Success : Severity.Error);
+        }
+    }
+
+    private void HandleLinkDeleteClick(LinksMain link)
+    {
+        _linkService.RemoveLink(link.Id);
+        _links = _linkService.GetLinks();
     }
 
     #endregion
@@ -58,7 +92,7 @@ public partial class RecommendedLinksPage : ComponentBase
     }
 
     // 切換收藏狀態
-    private async Task HandleToggleFavoriteClick(int linkId)
+    private void HandleToggleFavoriteClick(int linkId)
     {
         if (!_favoriteStates.ContainsKey(linkId))
         {
@@ -68,23 +102,23 @@ public partial class RecommendedLinksPage : ComponentBase
         _favoriteStates[linkId] = !_favoriteStates[linkId];
 
         // 這裡可以加入將收藏狀態保存到資料庫或 localStorage 的邏輯
-        await SaveFavoriteStateProcessing(linkId, _favoriteStates[linkId]);
+        SaveFavoriteStateProcessing(linkId, _favoriteStates[linkId]);
     }
 
     // 儲存收藏狀態的方法
-    private async Task SaveFavoriteStateProcessing(int linkId, bool state)
+    private void SaveFavoriteStateProcessing(int linkId, bool state)
     {
         try
         {
-            // 這裡實作儲存邏輯，例如：
-            // 1. 呼叫 API 儲存到資料庫
-            // await YourApiService.SaveFavorite(linkId, state);
+            SaveLink saveLink = new()
+            {
+                UserId = 1, // 這裡可以改成從登入資訊取得
+                LinkId = linkId,
+                IsFavorite = state
+            };
 
-            // 2. 或儲存到 localStorage
-            // await JSRuntime.InvokeVoidAsync("localStorage.setItem", $"favorite_{linkId}", state);
-
-            // 3. 或使用 Blazor 的 ProtectedLocalStorage
-            // await ProtectedLocalStorage.SetAsync($"favorite_{linkId}", state);
+            ServiceResponse response = _linkService.SaveFavoriteLink(saveLink);
+            _snackbar.Add(response.Message, response.Success ? Severity.Success : Severity.Error);
         }
         catch (Exception ex)
         {
@@ -116,19 +150,18 @@ public partial class RecommendedLinksPage : ComponentBase
 
     private async Task HandleOpenAddLinkDialog()
     {
-        var dialog = await _dialogService.ShowAsync<AddLinkDialog>("新增推薦連結",
+        var dialog = await _dialogService.ShowAsync<LinkDialog>("新增推薦連結",
             new DialogOptions()
             {
                 CloseOnEscapeKey = true,
                 CloseButton = true
             });
-        var result = await dialog.Result;
 
-        if (!result.Canceled)
+        var result = await dialog.Result;
+        if (result is { Canceled: false })
         {
-            var newLink = (LinksMain)result.Data;
-            _links.Add(newLink);
-            _snackbar.Add("已新增推薦連結", Severity.Success);
+            var response = (ServiceResponse)result.Data!;
+            _snackbar.Add(response.Message, response.Success ? Severity.Success : Severity.Error);
         }
     }
 }

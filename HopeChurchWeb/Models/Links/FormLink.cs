@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HopeChurchWeb.Models;
 
-public class FormAddLink
+public class FormLink
 {
     /// <summary>
     /// 連結名稱

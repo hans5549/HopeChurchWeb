@@ -12,7 +12,12 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 
 // Add MudBlazor services
-builder.Services.AddMudServices();
+builder.Services.AddMudServices(config =>
+{
+    config.SnackbarConfiguration.VisibleStateDuration = 1000;
+    config.SnackbarConfiguration.HideTransitionDuration = 200;
+    config.SnackbarConfiguration.ShowTransitionDuration = 200;
+});
 
 // Add Serilog services
 builder.Logging.AddSerilog();
@@ -23,11 +28,9 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddAllServices().AddAllRepositories();
 
-var connectionString = "Server=localhost;Database=HopeChurchDB;User=root;Password=H@ns19951204";
-
+var connectionString = builder.Configuration.GetConnectionString("ChurchDBConnection");
 builder.Services.AddDbContext<ChurchDBContext>(options =>
-    options.UseMySql(connectionString,
-        ServerVersion.AutoDetect(connectionString)));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 var app = builder.Build();
 

@@ -30,4 +30,10 @@ public class LinksMain
     /// </summary>
     [Required]
     public string Url { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 點擊次數
+    /// </summary>
+    [Required]
+    public int ClickCount { get; set; } = 0;
 }

@@ -210,8 +210,7 @@ public class FakeData
             new LinksMain { Id = 3, Title = "Facebook", Description = "社群媒體平台", Url = "https://www.facebook.com" },
             new LinksMain { Id = 4, Title = "LinkedIn", Description = "專業人士社交網路", Url = "https://www.linkedin.com" },
             new LinksMain { Id = 5, Title = "GitHub", Description = "程式碼託管平台", Url = "https://github.com" },
-            new LinksMain
-                { Id = 6, Title = "Stack Overflow", Description = "程式開發問答網站", Url = "https://stackoverflow.com" },
+            new LinksMain { Id = 6, Title = "Stack Overflow", Description = "程式開發問答網站", Url = "https://stackoverflow.com" },
             new LinksMain { Id = 7, Title = "Microsoft", Description = "微軟官方網站", Url = "https://www.microsoft.com" },
             new LinksMain { Id = 8, Title = "Apple", Description = "蘋果公司官方網站", Url = "https://www.apple.com" },
             new LinksMain { Id = 9, Title = "Amazon", Description = "全球最大電商平台", Url = "https://www.amazon.com" },
