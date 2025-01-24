@@ -1,3 +1,145 @@
 @page "/forum"
 
-<h3>討論區</h3>
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudGrid Class="mt-4">
+        <MudItem xs="12" md="3">
+            <MudPaper Elevation="2" Class="pa-4 mb-4">
+                <MudText Typo="Typo.h6">分類</MudText>
+                <MudList T="string">
+                    <MudListItem Icon="@Icons.Material.Filled.Settings" Text="縱向部門" Expanded="false">
+                        <NestedList>
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="聖職者" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="長年部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="家庭局" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="青年部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="大學部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="SS" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="銀河水" />
+                        </NestedList>
+                    </MudListItem>
+                    <MudDivider />
+                    <MudListItem Icon="@Icons.Material.Filled.Article" Text="橫向部門" Expanded="false">
+                        <NestedList>
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="總務" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="影音部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="攝影部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="文書部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="聖歌隊" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="網宣" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="美術部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="聖管部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="財務部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="歡迎部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="接待部" />
+                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="歌手部" />
+                        </NestedList>
+                    </MudListItem>
+                    <MudDivider />
+                </MudList>
+            </MudPaper>
+        </MudItem>
+
+        <MudItem xs="12" md="9">
+            <MudPaper Elevation="2" Class="pa-4 mb-4">
+                <MudGrid>
+                    <MudItem xs="12">
+                        <div class="d-flex align-center">
+                            <MudAvatar Color="Color.Primary" Class="mr-2">
+                                <MudIcon Icon="@Icons.Material.Filled.Person" />
+                            </MudAvatar>
+                            <div>
+                                <MudText Inline="true" Typo="Typo.body1" Class="font-weight-bold">
+                                    Mistaken Idea of Denouncing Pleasure and Praising
+                                </MudText>
+                                <MudText Inline="true" Typo="Typo.caption">
+                                    <MudHighlighter Text="admin" Highlight="@("admin")" />
+                                    <span class="mx-1">·</span> 45 Minutes Ago <span class="mx-1">·</span>
+                                    <MudHighlighter Text="Technology" Highlight="@("Technology")" />
+                                </MudText>
+                            </div>
+                            <MudSpacer />
+                            <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Error" Size="Size.Small" />
+                        </div>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudText Typo="Typo.body2">
+                            Those who do not know how to pursue pleasure rationally encounter consequences that are extre...
+                        </MudText>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudText Typo="Typo.caption">
+                            265 Views <span class="mx-1">·</span> 156 Replies <span class="mx-1">·</span>
+                            <MudLink Href="#" Typo="Typo.caption">Share</MudLink>
+                        </MudText>
+                    </MudItem>
+                </MudGrid>
+            </MudPaper>
+
+            <MudPaper Elevation="2" Class="pa-4 mb-4">
+                <MudGrid>
+                    <MudItem xs="12">
+                        <div class="d-flex align-center">
+                            <MudAvatar Image="https://randomuser.me/api/portraits/men/57.jpg" Class="mr-2" />
+                            <div>
+                                <MudText Inline="true" Typo="Typo.body1" Class="font-weight-bold">
+                                    Many Variations of Passages of Lorem Ipsum Available
+                                </MudText>
+                                <MudText Inline="true" Typo="Typo.caption">
+                                    <MudHighlighter Text="milestim" Highlight="@("milestim")" />
+                                    <span class="mx-1">·</span> 4 Hours Ago <span class="mx-1">·</span>
+                                    <MudHighlighter Text="Business" Highlight="@("Business")" />
+                                </MudText>
+                            </div>
+                            <MudSpacer />
+                            <MudIconButton Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Default" Size="Size.Small" />
+                        </div>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudText Typo="Typo.body2">
+                            Suffered alteration in some form, by injected humour, or randomised words which don't look even sl...
+                        </MudText>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudText Typo="Typo.caption">
+                            456 Views <span class="mx-1">·</span> 352 Replies <span class="mx-1">·</span>
+                            <MudLink Href="#" Typo="Typo.caption">Share</MudLink>
+                        </MudText>
+                    </MudItem>
+                </MudGrid>
+            </MudPaper>
+
+            <MudPaper Elevation="2" Class="pa-4 mb-4">
+                <MudGrid>
+                    <MudItem xs="12">
+                        <div class="d-flex align-center">
+                            <MudAvatar Image="https://randomuser.me/api/portraits/men/58.jpg" Class="mr-2" />
+                            <div>
+                                <MudText Inline="true" Typo="Typo.body1" Class="font-weight-bold">
+                                    You are going to use a passage of Lorem Ipsum
+                                </MudText>
+                                <MudText Inline="true" Typo="Typo.caption">
+                                    <MudHighlighter Text="moderator" Highlight="@("moderator")" />
+                                    <span class="mx-1">·</span> 9 Hours Ago <span class="mx-1">·</span>
+                                    <MudHighlighter Text="Technology" Highlight="@("Technology")" />
+                                </MudText>
+                            </div>
+                            <MudSpacer />
+                            <MudIconButton Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Default" Size="Size.Small" />
+                        </div>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudText Typo="Typo.body2">
+                            You need to be sure there isn't anything embarrassing hidden in the middle of text the Lorem Ipsum...
+                        </MudText>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudText Typo="Typo.caption">
+                            543 Views <span class="mx-1">·</span> 243 Replies <span class="mx-1">·</span>
+                            <MudLink Href="#" Typo="Typo.caption">Share</MudLink>
+                        </MudText>
+                    </MudItem>
+                </MudGrid>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
