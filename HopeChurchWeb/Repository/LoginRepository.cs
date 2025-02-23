@@ -8,7 +8,6 @@ public class LoginRepository
 {
     public LoginRepository()
     {
-
     }
 
     public List<UserMain> SelectUserMains()

@@ -8,17 +8,13 @@ namespace HopeChurchWeb.Components.Pages.RecommendedLinks;
 
 public partial class LinkDialog : ComponentBase
 {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Inject]
-    private IDialogService _dialogService { get; set; } = null!;
+    [Inject] private IDialogService _dialogService { get; set; } = null!;
 
-    [Inject]
-    private LinkService _linkService { get; set; } = null!;
+    [Inject] private LinkService _linkService { get; set; } = null!;
 
-    [Parameter]
-    public LinksMain Link { get; set; } = new();
+    [Parameter] public LinksMain Link { get; set; } = new();
 
     private ActionEnum _action;
     private string _dialogTitle = string.Empty;
@@ -40,18 +36,13 @@ public partial class LinkDialog : ComponentBase
     private IEnumerable<string> ValidateUrl(string url)
     {
         if (string.IsNullOrWhiteSpace(url))
-        {
             yield return "請輸入連結網址";
-        }
-        else if (!Uri.TryCreate(url, UriKind.Absolute, out _))
-        {
-            yield return "請輸入有效的網址";
-        }
+        else if (!Uri.TryCreate(url, UriKind.Absolute, out _)) yield return "請輸入有效的網址";
     }
 
     private void Submit()
     {
-        ServiceResponse response = _action switch
+        var response = _action switch
         {
             ActionEnum.Create => _linkService.AddLink(_formLink),
             ActionEnum.Update => _linkService.UpdateLink(Link.Id, _formLink),

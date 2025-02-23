@@ -14,7 +14,7 @@ public class LinkService
 
     public ServiceResponse UpdateLinkClickCount(int linkId)
     {
-        bool result = _linkRepository.UpdateLinkClickCount(linkId);
+        var result = _linkRepository.UpdateLinkClickCount(linkId);
         return result switch
         {
             true => new ServiceResponse(true, string.Empty),
@@ -31,7 +31,7 @@ public class LinkService
             Description = formLink.Description
         };
 
-        bool result = _linkRepository.InsertLink(link);
+        var result = _linkRepository.InsertLink(link);
         return result switch
         {
             true => new ServiceResponse(true, "新增成功"),
@@ -47,7 +47,7 @@ public class LinkService
             LinkId = saveLink.LinkId
         };
 
-        bool result = saveLink.IsFavorite switch
+        var result = saveLink.IsFavorite switch
         {
             true => _linkRepository.InsertFavoriteLink(favoriteLink),
             false => _linkRepository.DeleteFavoriteLink(favoriteLink)
@@ -70,7 +70,7 @@ public class LinkService
             Description = formLink.Description
         };
 
-        bool result = _linkRepository.UpdateLink(linkId, link);
+        var result = _linkRepository.UpdateLink(linkId, link);
         return result switch
         {
             true => new ServiceResponse(true, "更新成功"),
@@ -90,7 +90,7 @@ public class LinkService
 
     public ServiceResponse RemoveLink(int linkId)
     {
-        bool result = _linkRepository.DeleteLink(linkId);
+        var result = _linkRepository.DeleteLink(linkId);
         return result switch
         {
             true => new ServiceResponse(true, "刪除成功"),

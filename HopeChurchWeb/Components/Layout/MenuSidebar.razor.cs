@@ -4,5 +4,4 @@ namespace HopeChurchWeb.Components.Layout;
 
 public partial class MenuSidebar : ComponentBase
 {
-
 }

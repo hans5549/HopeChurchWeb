@@ -7,28 +7,29 @@ namespace HopeChurchWeb.Components.Layout;
 public partial class MainLayout
 {
     #region [Inject]
-    [Inject]
-    private IDialogService DialogService { get; set; } = null!;
 
-    [Inject]
-    private NavigationManager Navigation { get; set; } = null!;
+    [Inject] private IDialogService DialogService { get; set; } = null!;
+
+    [Inject] private NavigationManager Navigation { get; set; } = null!;
+
     #endregion
 
     private bool _drawerOpen = false;
     private bool _menuShow = true;
 
-    protected async Task InitializeAsync()
+    protected Task InitializeAsync()
     {
         _drawerOpen = false;
         _menuShow = false;
+        return Task.CompletedTask;
     }
 
     private Task HandleLoginAsync()
     {
-        DialogOptions options = new DialogOptions
+        var options = new DialogOptions
         {
             FullWidth = true,
-            CloseButton = true,
+            CloseButton = true
         };
 
         return DialogService.ShowAsync<LoginPage>("登入", options);

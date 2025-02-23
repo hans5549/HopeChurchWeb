@@ -9,8 +9,7 @@ public partial class ForgetPassword : ComponentBase
 {
     #region [Inject]
 
-    [Inject]
-    private IDialogService _dialogService { get; set; } = null!;
+    [Inject] private IDialogService _dialogService { get; set; } = null!;
 
     #endregion
 
@@ -45,35 +44,26 @@ public partial class ForgetPassword : ComponentBase
         switch (_stepIndex)
         {
             case 0:
-                {
-                    (bool Results, string message) = VerifyForgetPasswordVerification(_passwordVerification);
-                    if (Results)
-                    {
-                        await _stepper.NextStepAsync();
-                    }
-                    else
-                    {
-                        await _dialogService.ShowMessageBox("錯誤", message);
-                    }
-                }
+            {
+                var (Results, message) = VerifyForgetPasswordVerification(_passwordVerification);
+                if (Results)
+                    await _stepper.NextStepAsync();
+                else
+                    await _dialogService.ShowMessageBox("錯誤", message);
+            }
                 break;
             case 1:
-                {
-                    (bool Results, string message) = VerifyPasswordReset(_passwordReset);
-                    if (Results)
-                    {
-                        await _stepper.NextStepAsync();
-                    }
-                    else
-                    {
-                        await _dialogService.ShowMessageBox("錯誤", message);
-                    }
-                }
+            {
+                var (Results, message) = VerifyPasswordReset(_passwordReset);
+                if (Results)
+                    await _stepper.NextStepAsync();
+                else
+                    await _dialogService.ShowMessageBox("錯誤", message);
+            }
                 break;
             case 2:
-                {
-
-                }
+            {
+            }
                 break;
         }
     }
@@ -82,11 +72,8 @@ public partial class ForgetPassword : ComponentBase
     {
         ValidationContext context = new(obj);
         List<ValidationResult> results = [];
-        bool isValid = Validator.TryValidateObject(obj, context, results, true);
-        if (!isValid)
-        {
-            return (false, results.First().ErrorMessage ?? string.Empty);
-        }
+        var isValid = Validator.TryValidateObject(obj, context, results, true);
+        if (!isValid) return (false, results.First().ErrorMessage ?? string.Empty);
 
         return (true, string.Empty);
     }
@@ -116,13 +103,15 @@ public partial class ForgetPassword : ComponentBase
         if (isMainPassword)
         {
             _showMainPassword = !_showMainPassword;
-            _mainPasswordInputIcon = _showMainPassword ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility;
+            _mainPasswordInputIcon =
+                _showMainPassword ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility;
             _mainPasswordInputType = _showMainPassword ? InputType.Password : InputType.Text;
         }
         else
         {
             _showSubPassword = !_showSubPassword;
-            _subPasswordInputIcon = _showSubPassword ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility;
+            _subPasswordInputIcon =
+                _showSubPassword ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility;
             _subPasswordInputType = _showSubPassword ? InputType.Password : InputType.Text;
         }
     }

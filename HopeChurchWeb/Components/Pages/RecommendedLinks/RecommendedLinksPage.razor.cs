@@ -10,24 +10,20 @@ public partial class RecommendedLinksPage : ComponentBase
 {
     #region [Inject]
 
-    [Inject]
-    private IDialogService  _dialogService  { get; set; } = null!;
+    [Inject] private IDialogService _dialogService { get; set; } = null!;
 
-    [Inject]
-    private IJSRuntime _jsRuntime  { get; set; } = null!;
+    [Inject] private IJSRuntime _jsRuntime { get; set; } = null!;
 
-    [Inject]
-    private LinkService _linkService { get; set; } = null!;
+    [Inject] private LinkService _linkService { get; set; } = null!;
 
-    [Inject]
-    private ISnackbar  _snackbar  { get; set; } = null!;
+    [Inject] private ISnackbar _snackbar { get; set; } = null!;
 
     #endregion
 
     private string _searchText = string.Empty;
     private List<LinksMain> _links = [];
     private Dictionary<int, bool> _favoriteStates = new(); // 存儲收藏狀態的字典
-    private Dictionary<int, bool> _linkCardExpandStates = new();  // 存儲展開狀態的字典
+    private Dictionary<int, bool> _linkCardExpandStates = new(); // 存儲展開狀態的字典
 
     private IEnumerable<LinksMain> _filteredLinks =>
         string.IsNullOrWhiteSpace(_searchText)
@@ -39,7 +35,7 @@ public partial class RecommendedLinksPage : ComponentBase
         _links = _linkService.GetLinks();
         List<FavoriteLink> favoriteLinks = _linkService.GetFavoriteLinks(1);
         _favoriteStates = favoriteLinks.ToDictionary(x => x.LinkId, x => true);
-        HashSet<int> favoriteLinkIds = favoriteLinks.Select(x => x.LinkId).ToHashSet();
+        var favoriteLinkIds = favoriteLinks.Select(x => x.LinkId).ToHashSet();
         _links = _links.OrderByDescending(link => favoriteLinkIds.Contains(link.Id)).ToList();
     }
 
@@ -94,10 +90,7 @@ public partial class RecommendedLinksPage : ComponentBase
     // 切換收藏狀態
     private void HandleToggleFavoriteClick(int linkId)
     {
-        if (!_favoriteStates.ContainsKey(linkId))
-        {
-            _favoriteStates[linkId] = false;
-        }
+        if (!_favoriteStates.ContainsKey(linkId)) _favoriteStates[linkId] = false;
 
         _favoriteStates[linkId] = !_favoriteStates[linkId];
 
@@ -117,7 +110,7 @@ public partial class RecommendedLinksPage : ComponentBase
                 IsFavorite = state
             };
 
-            ServiceResponse response = _linkService.SaveFavoriteLink(saveLink);
+            var response = _linkService.SaveFavoriteLink(saveLink);
             _snackbar.Add(response.Message, response.Success ? Severity.Success : Severity.Error);
         }
         catch (Exception ex)
@@ -139,10 +132,8 @@ public partial class RecommendedLinksPage : ComponentBase
     // 展開/收合說明的方法
     private void HandleToggleExpandClick(int linkId)
     {
-        if (!_linkCardExpandStates.ContainsKey(linkId))
-        {
-            _linkCardExpandStates[linkId] = false;
-        }
+        if (!_linkCardExpandStates.ContainsKey(linkId)) _linkCardExpandStates[linkId] = false;
+
         _linkCardExpandStates[linkId] = !_linkCardExpandStates[linkId];
     }
 

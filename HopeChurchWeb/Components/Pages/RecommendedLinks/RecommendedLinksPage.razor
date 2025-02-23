@@ -1,5 +1,4 @@
 @page "/recommended-links"
-@using HopeChurchWeb.Models
 
 <PageTitle>推薦連結</PageTitle>
 <MudContainer>
@@ -33,10 +32,10 @@
             </div>
         </div>
     </div>
-    <MudDivider Class="mb-8" Style="border-width: 2px; border-color: rgba(0,0,0,0.35);" />
+    <MudDivider Class="mb-8" Style="border-width: 2px; border-color: rgba(0,0,0,0.35);"/>
 
     <div class="links-container">
-        @foreach(var link in _filteredLinks)
+        @foreach (var link in _filteredLinks)
         {
             <div class="card-wrapper">
                 <MudCard Elevation="2">
@@ -55,13 +54,13 @@
                                      TransformOrigin="Origin.TopRight">
                                 <MudMenuItem OnClick="@((_) => HandleLinkEditClick(link))">
                                     <div class="d-flex align-center">
-                                        <MudIcon Icon="@Icons.Material.Filled.Edit" Class="mr-2" />
+                                        <MudIcon Icon="@Icons.Material.Filled.Edit" Class="mr-2"/>
                                         編輯
                                     </div>
                                 </MudMenuItem>
                                 <MudMenuItem OnClick="@((_) => HandleLinkDeleteClick(link))">
                                     <div class="d-flex align-center">
-                                        <MudIcon Icon="@Icons.Material.Filled.Delete" Class="mr-2" Color="Color.Error" />
+                                        <MudIcon Icon="@Icons.Material.Filled.Delete" Class="mr-2" Color="Color.Error"/>
                                         刪除
                                     </div>
                                 </MudMenuItem>
@@ -76,7 +75,8 @@
                                      class="d-flex align-center justify-space-between"
                                      style="cursor: pointer;">
                                     <MudText Typo="Typo.subtitle1" Style="font-weight: 500;">說明</MudText>
-                                    <MudIcon Icon="@(GetExpandState(link.Id) ? Icons.Material.Filled.ExpandLess : Icons.Material.Filled.ExpandMore)" />
+                                    <MudIcon
+                                        Icon="@(GetExpandState(link.Id) ? Icons.Material.Filled.ExpandLess : Icons.Material.Filled.ExpandMore)"/>
                                 </div>
                                 <MudCollapse Expanded="@GetExpandState(link.Id)">
                                     <MudText Typo="Typo.body2">@link.Description</MudText>
@@ -87,13 +87,13 @@
 
                     <MudCardActions Style="padding: 8px 16px;">
                         <MudIconButton Icon="@Icons.Material.Filled.Favorite"
-                                      Size="Size.Small"
-                                      Color="@(IsFavorite(link.Id) ? Color.Error : Color.Default)"
-                                      OnClick="@(() => HandleToggleFavoriteClick(link.Id))" />
+                                       Size="Size.Small"
+                                       Color="@(IsFavorite(link.Id) ? Color.Error : Color.Default)"
+                                       OnClick="@(() => HandleToggleFavoriteClick(link.Id))"/>
                         <MudIconButton Icon="@Icons.Material.Filled.ContentCopy"
-                                      Size="Size.Small"
-                                      Color="Color.Default"
-                                      OnClick="@(() => HandleCopyToClipboardClick(link.Url))" />
+                                       Size="Size.Small"
+                                       Color="Color.Default"
+                                       OnClick="@(() => HandleCopyToClipboardClick(link.Url))"/>
                     </MudCardActions>
                 </MudCard>
             </div>

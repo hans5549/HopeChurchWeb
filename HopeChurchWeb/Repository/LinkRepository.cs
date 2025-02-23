@@ -76,10 +76,7 @@ public class LinkRepository
         try
         {
             var data = _context.LinksMains.FirstOrDefault(x => x.Id == linkId);
-            if (data == null)
-            {
-                return false;
-            }
+            if (data == null) return false;
 
             data.Title = link.Title;
             data.Url = link.Url;
@@ -100,10 +97,7 @@ public class LinkRepository
         try
         {
             var data = _context.LinksMains.FirstOrDefault(x => x.Id == linkId);
-            if (data == null)
-            {
-                return false;
-            }
+            if (data == null) return false;
 
             data.ClickCount += 1;
             _context.SaveChanges();
@@ -121,10 +115,7 @@ public class LinkRepository
         try
         {
             var data = _context.LinksMains.FirstOrDefault(x => x.Id == linkId);
-            if (data == null)
-            {
-                return false;
-            }
+            if (data == null) return false;
 
             _context.LinksMains.Remove(data);
             _context.SaveChanges();
@@ -141,11 +132,9 @@ public class LinkRepository
     {
         try
         {
-            var data = _context.FavoriteLinks.FirstOrDefault(x => x.LinkId == favoriteLink.LinkId && x.UserId == favoriteLink.UserId);
-            if (data == null)
-            {
-                return false;
-            }
+            var data = _context.FavoriteLinks.FirstOrDefault(x =>
+                x.LinkId == favoriteLink.LinkId && x.UserId == favoriteLink.UserId);
+            if (data == null) return false;
 
             _context.FavoriteLinks.Remove(data);
             _context.SaveChanges();

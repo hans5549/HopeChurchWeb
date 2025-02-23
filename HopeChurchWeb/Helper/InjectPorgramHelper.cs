@@ -2,8 +2,9 @@ using System.Reflection;
 
 namespace HopeChurchWeb.Extensions;
 
-public static class ServiceCollectionExtensions
-{   // 可選：如果需要更細緻的控制，可以分別註冊
+public static class InjectPorgramHelper
+{
+    // 可選：如果需要更細緻的控制，可以分別註冊
     public static IServiceCollection AddAllServices(this IServiceCollection services)
     {
         var assembly = Assembly.GetExecutingAssembly();
@@ -14,10 +15,7 @@ public static class ServiceCollectionExtensions
                         && !t.IsInterface
                         && !t.IsAbstract);
 
-        foreach (var type in serviceTypes)
-        {
-            services.AddScoped(type);
-        }
+        foreach (var type in serviceTypes) services.AddScoped(type);
 
         return services;
     }
@@ -32,10 +30,7 @@ public static class ServiceCollectionExtensions
                         && !t.IsInterface
                         && !t.IsAbstract);
 
-        foreach (var type in repositoryTypes)
-        {
-            services.AddScoped(type);
-        }
+        foreach (var type in repositoryTypes) services.AddScoped(type);
 
         return services;
     }

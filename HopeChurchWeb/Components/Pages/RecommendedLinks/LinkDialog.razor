@@ -14,7 +14,7 @@
                                   Required="true"
                                   RequiredError="請輸入連結名稱"
                                   MaxLength="50"
-                                  Counter="50" />
+                                  Counter="50"/>
                 </MudItem>
 
                 <MudItem xs="12">
@@ -22,14 +22,14 @@
                                   Label="連結網址"
                                   Required="true"
                                   RequiredError="請輸入連結網址"
-                                  Validation="@(new Func<string, IEnumerable<string>>(ValidateUrl))" />
+                                  Validation="@(new Func<string, IEnumerable<string>>(ValidateUrl))"/>
                 </MudItem>
 
                 <MudItem xs="12">
                     <MudTextField @bind-Value="_formLink.Description"
                                   Label="說明"
                                   MaxLength="500"
-                                  Counter="500" />
+                                  Counter="500"/>
                 </MudItem>
             </MudGrid>
         </MudForm>

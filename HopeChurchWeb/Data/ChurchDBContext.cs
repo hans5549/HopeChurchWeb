@@ -20,7 +20,7 @@ public class ChurchDBContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        string connectionString = _configuration.GetConnectionString("ChurchDBConnection")!;
+        var connectionString = _configuration.GetConnectionString("ChurchDBConnection")!;
         optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
     }
 }

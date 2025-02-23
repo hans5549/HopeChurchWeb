@@ -1,37 +1,46 @@
 @page "/developer-management"
 @using HopeChurchWeb.Models
 
-<MudDropContainer T="DropItem" Items="_items" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-column flex-grow-1">
+<MudDropContainer T="DropItem" Items="_items" ItemsSelector="@((item, dropzone) => item.Identifier == dropzone)"
+                  ItemDropped="ItemUpdated" Class="d-flex flex-column flex-grow-1">
     <ChildContent>
         <div class="d-flex flex-column flex-grow-1">
             <MudListSubheader Class="mt-4 pb-2">Folders</MudListSubheader>
-            <MudDropZone T="DropItem" ItemDraggingClass="mud-info-text" Identifier="Folders" Class="d-flex flex-wrap flex-grow-1 pa-2 rounded" />
+            <MudDropZone T="DropItem" ItemDraggingClass="mud-info-text" Identifier="Folders"
+                         Class="d-flex flex-wrap flex-grow-1 pa-2 rounded"/>
         </div>
         <div class="d-flex flex-column flex-grow-1">
             <MudListSubheader Class="mt-4 pb-2">Files</MudListSubheader>
-            <MudDropZone T="DropItem" DraggingClass="mud-alert-text-normal" Identifier="Files" Class="d-flex flex-wrap flex-grow-1 pa-2 rounded" />
+            <MudDropZone T="DropItem" DraggingClass="mud-alert-text-normal" Identifier="Files"
+                         Class="d-flex flex-wrap flex-grow-1 pa-2 rounded"/>
         </div>
         <div class="d-flex flex-column flex-grow-1">
             <MudListSubheader Class="mt-4 pb-2">MudBlazor Secrets</MudListSubheader>
-            <MudDropZone T="DropItem" DraggingClass="mud-alert-text-error" ItemDraggingClass="mud-error-text" Identifier="MudBlazor" Class="d-flex flex-wrap flex-grow-1 pa-2 rounded" />
+            <MudDropZone T="DropItem" DraggingClass="mud-alert-text-error" ItemDraggingClass="mud-error-text"
+                         Identifier="MudBlazor" Class="d-flex flex-wrap flex-grow-1 pa-2 rounded"/>
         </div>
     </ChildContent>
     <ItemRenderer>
         <div Class="rounded mud-paper-outlined d-flex align-center pa-3 ma-2">
-            <MudIcon Icon="@(context.Identifier == "Folders" ? Icons.Custom.Uncategorized.Folder : Icons.Custom.FileFormats.FileDocument)" Color="Color.Inherit" Class="mr-2"/>
+            <MudIcon
+                Icon="@(context.Identifier == "Folders" ? Icons.Custom.Uncategorized.Folder : Icons.Custom.FileFormats.FileDocument)"
+                Color="Color.Inherit" Class="mr-2"/>
             @context.Name
         </div>
     </ItemRenderer>
 </MudDropContainer>
 
 
-<MudDropContainer T="WebFunctionMain" Items="_functionMains" ItemsSelector="@((item,dropzone) => item.ParentId.ToString() == dropzone)" ItemDropped="AAItemUpdated" Class="d-flex flex-column flex-grow-1">
+<MudDropContainer T="WebFunctionMain" Items="_functionMains"
+                  ItemsSelector="@((item, dropzone) => item.ParentId.ToString() == dropzone)"
+                  ItemDropped="AAItemUpdated" Class="d-flex flex-column flex-grow-1">
     <ChildContent>
         @foreach (var node in _parentNode)
         {
             <div class="d-flex flex-column flex-grow-1">
                 <MudListSubheader Class="mt-4 pb-2">@node.Name</MudListSubheader>
-                <MudDropZone T="WebFunctionMain" ItemDraggingClass="mud-info-text" Identifier="@node.Id.ToString()" Class="d-flex flex-wrap flex-grow-1 pa-2 rounded"/>
+                <MudDropZone T="WebFunctionMain" ItemDraggingClass="mud-info-text" Identifier="@node.Id.ToString()"
+                             Class="d-flex flex-wrap flex-grow-1 pa-2 rounded"/>
             </div>
         }
     </ChildContent>

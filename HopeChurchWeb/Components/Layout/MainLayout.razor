@@ -1,28 +1,32 @@
 ﻿@inherits LayoutComponentBase
 
 @* Required *@
-<MudThemeProvider />
-<MudPopoverProvider />
+<MudThemeProvider/>
+<MudPopoverProvider/>
 
 @* Needed for dialogs *@
-<MudDialogProvider />
+<MudDialogProvider/>
 
 @* Needed for snackbars *@
-<MudSnackbarProvider />
+<MudSnackbarProvider/>
 
 <MudLayout>
     <MudAppBar Elevation="1" Style="background-color:#F3C937">
         @if (_menuShow)
         {
-            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+                           OnClick="@((e) => DrawerToggle())"/>
         }
         <MudText Typo="Typo.h5" Class="ml-3">MyWebSite</MudText>
         <MudSpacer/>
-        <MudButton StartIcon="@Icons.Material.Filled.Login" Style="color: #fefefe" Size="Size.Large" Href="/login">登入</MudButton>
+        <MudButton StartIcon="@Icons.Material.Filled.Login" Style="color: #fefefe" Size="Size.Large" Href="/login">
+            登入
+        </MudButton>
     </MudAppBar>
 
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Style="background-color: #F5F5F5" Elevation="2" Variant="@DrawerVariant.Temporary">
-        <MenuSidebar />
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Style="background-color: #F5F5F5" Elevation="2"
+               Variant="@DrawerVariant.Temporary">
+        <MenuSidebar/>
     </MudDrawer>
 
     <MudMainContent>

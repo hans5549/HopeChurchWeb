@@ -7,7 +7,7 @@ public class FormSignup
     /// <summary>
     /// 帳號
     /// </summary>
-    [Required]
+    [Required(ErrorMessage = "帳號為必填")]
     public string Account { get; set; } = string.Empty;
 
     /// <summary>

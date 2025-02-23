@@ -21,9 +21,11 @@
                                             SelectionMode="SelectionMode.SingleSelection"
                                             CheckMark>
                                     <MudChip Value="@LoginModeEnum.Church.ToString().ToLower()"
-                                             Variant="Variant.Outlined">教會</MudChip>
+                                             Variant="Variant.Outlined">教會
+                                    </MudChip>
                                     <MudChip Value="@LoginModeEnum.CGM.ToString().ToLower()"
-                                             Variant="Variant.Outlined">CGM</MudChip>
+                                             Variant="Variant.Outlined">CGM
+                                    </MudChip>
                                 </MudChipSet>
                             </MudItem>
 
@@ -33,7 +35,7 @@
                                           Label="帳號"
                                           HelperText="姓名 或 Email"
                                           Variant="Variant.Outlined"
-                                          FullWidth="true" />
+                                          FullWidth="true"/>
 
                             <MudTextField T="string"
                                           @bind-Value="_formLogin.Password"
@@ -43,7 +45,7 @@
                                           Adornment="Adornment.End"
                                           AdornmentIcon="@_passwordInputIcon"
                                           OnAdornmentClick="HandlePasswordInputIconClick"
-                                          FullWidth="true" />
+                                          FullWidth="true"/>
 
                             <!-- Forgot Email Link -->
                             <MudButton Variant="Variant.Text"

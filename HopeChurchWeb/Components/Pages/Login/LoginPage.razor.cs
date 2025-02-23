@@ -1,4 +1,3 @@
-using HopeChurchWeb.Common.Enum;
 using HopeChurchWeb.Models;
 using HopeChurchWeb.Services;
 using Microsoft.AspNetCore.Components;
@@ -6,18 +5,15 @@ using MudBlazor;
 
 namespace HopeChurchWeb.Components.Pages.Login;
 
-public partial class LoginPage : ComponentBase
+public partial class LoginPage : ComponentBase 
 {
     #region [Inject]
 
-    [Inject]
-    private ISnackbar _snackbar { get; set; } = null!;
+    [Inject] private ISnackbar Snackbar { get; set; } = null!;
 
-    [Inject]
-    private LoginService _loginService { get; set; } = null!;
+    [Inject] private LoginService LoginService { get; set; } = null!;
 
-    [Inject]
-    private NavigationManager _navigationManager { get; set; } = null!;
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
 
     #endregion
 
@@ -45,31 +41,27 @@ public partial class LoginPage : ComponentBase
 
     private void HandleForgetPasswordClick()
     {
-        _navigationManager.NavigateTo("/forget-password");
+        NavigationManager.NavigateTo("/forget-password");
     }
 
     private void HandleSignupClick()
     {
-        _navigationManager.NavigateTo("/signup");
+        NavigationManager.NavigateTo("/signup");
     }
 
     private void HandleSubmitClick()
     {
-        ServiceResponse response = _loginService.CheckUserExist(_formLogin);
+        var response = LoginService.CheckUserExist(_formLogin);
         if (response.Success)
-        {
             SnackBarProcessing($"登入成功!", Severity.Success);
-        }
         else
-        {
             SnackBarProcessing($"登入失敗! {response.Message}", Severity.Error);
-        }
     }
 
     private void SnackBarProcessing(string message, Severity severity)
     {
-        _snackbar.Clear();
-        _snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
-        _snackbar.Add(message, severity);
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
+        Snackbar.Add(message, severity);
     }
 }

@@ -19,14 +19,14 @@
                                           Label="帳號"
                                           HelperText="請打真實姓名"
                                           Variant="Variant.Outlined"
-                                          FullWidth="true" />
+                                          FullWidth="true"/>
 
                             <MudTextField T="string"
                                           @bind-Value="_formSignup.Email"
                                           Label="E-mail"
                                           HelperText="用來寄送忘記密碼確認信"
                                           Variant="Variant.Outlined"
-                                          FullWidth="true" />
+                                          FullWidth="true"/>
 
                             <MudTextField T="string"
                                           @bind-Value="_formSignup.Password"
@@ -36,7 +36,7 @@
                                           Adornment="Adornment.End"
                                           AdornmentIcon="@_passwordInputIcon"
                                           OnAdornmentClick="HandlePasswordInputIconClick"
-                                          FullWidth="true" />
+                                          FullWidth="true"/>
 
                             <!-- Buttons -->
                             <MudStack Row="true"
@@ -47,7 +47,8 @@
                                           AlignItems="AlignItems.Center"
                                           Style="width: 50%; justify-content: center">
                                     <MudText Typo="Typo.body1"
-                                             Style="font-weight: 300; margin: 0;">已經有帳號?</MudText>
+                                             Style="font-weight: 300; margin: 0;">已經有帳號?
+                                    </MudText>
                                     <MudButton Variant="Variant.Text"
                                                Style="color: #604847; padding-left: 4px; margin: 0; min-height: 0;"
                                                OnClick="HandleLoginClick">
