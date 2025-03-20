@@ -12,7 +12,7 @@ public partial class LinkDialog : ComponentBase
 
     [Inject] private IDialogService _dialogService { get; set; } = null!;
 
-    [Inject] private LinkService _linkService { get; set; } = null!;
+    [Inject] private LinkService LinkService { get; set; } = null!;
 
     [Parameter] public LinksMain Link { get; set; } = new();
 
@@ -44,8 +44,8 @@ public partial class LinkDialog : ComponentBase
     {
         var response = _action switch
         {
-            ActionEnum.Create => _linkService.AddLink(_formLink),
-            ActionEnum.Update => _linkService.UpdateLink(Link.Id, _formLink),
+            ActionEnum.Create => LinkService.AddLink(_formLink),
+            ActionEnum.Update => LinkService.UpdateLink(Link.Id, _formLink),
             _ => throw new ArgumentOutOfRangeException()
         };
 

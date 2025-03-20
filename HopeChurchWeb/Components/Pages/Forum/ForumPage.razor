@@ -6,35 +6,26 @@
             <MudPaper Elevation="2" Class="pa-4 mb-4">
                 <MudText Typo="Typo.h6">分類</MudText>
                 <MudList T="string">
-                    <MudListItem Icon="@Icons.Material.Filled.Settings" Text="縱向部門" Expanded="false">
-                        <NestedList>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="聖職者"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="長年部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="家庭局"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="青年部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="大學部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="SS"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="銀河水"/>
-                        </NestedList>
-                    </MudListItem>
-                    <MudDivider/>
-                    <MudListItem Icon="@Icons.Material.Filled.Article" Text="橫向部門" Expanded="false">
-                        <NestedList>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="總務"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="影音部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="攝影部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="文書部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="聖歌隊"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="網宣"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="美術部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="聖管部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="財務部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="歡迎部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="接待部"/>
-                            <MudListItem Icon="@Icons.Material.Filled.Group" Text="歌手部"/>
-                        </NestedList>
-                    </MudListItem>
-                    <MudDivider/>
+                    @foreach (var key in _categoryMap.Keys)
+                    {
+                        string rootName = _categoryMap[key].FirstOrDefault(c => c.Id == key)!.Name;
+                        @if (_categoryMap[key].Count > 1)
+                        {
+                            <MudListItem Icon="@Icons.Material.Filled.Folder" Text="@rootName" Expanded="false">
+                                <NestedList>
+                                    @foreach (var item in _categoryMap[key])
+                                    {
+                                        <MudListItem Icon="@Icons.Material.Filled.Group" Text="@item.Name"/>
+                                    }
+                                </NestedList>
+                            </MudListItem>
+                        }
+                        else
+                        {
+                            <MudListItem Icon="@Icons.Material.Filled.Article" Text="@rootName" Expanded="false"/>
+                        }
+                        <MudDivider/>
+                    }
                 </MudList>
             </MudPaper>
         </MudItem>

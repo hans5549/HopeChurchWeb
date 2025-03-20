@@ -8,6 +8,7 @@ public class ChurchDBContext : DbContext
     public DbSet<LinksMain> LinksMains { get; set; }
     public DbSet<FavoriteLink> FavoriteLinks { get; set; }
     public DbSet<UserMain> UserMains { get; set; }
+    public DbSet<ForumArticleCategory> ForumArticleCategories { get; set; }
 
     private readonly IConfiguration _configuration;
 

@@ -3,6 +3,7 @@ using HopeChurchWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HopeChurchWeb.Migrations
 {
     [DbContext(typeof(ChurchDBContext))]
-    partial class ChurchDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250320081510_202503201614")]
+    partial class _202503201614
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,9 +60,6 @@ namespace HopeChurchWeb.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<int>("ParentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SortId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
